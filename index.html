@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Weather Forecast</title>
+</head>
+<body>
+    <header>
+        <h1>Weather Forecast</h1>
+    </header>
+    <section class="main d-flex justify-content-between">
+        <div class="left">
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="city-input"
+                    placeholder="Enter City Name">
+                    <!-- <input type="text" class="" id="city-input" placeholder="Enter City Name"> -->
+                </div>
+                <button type="submit" class="btn btn-primary" id="search" value="search">Search</button>
+            </form>
+            <!-- <div class="line"></div> -->
+            <div class="btn-frame d-flex flex-column justify-content-evenly">
+                <button type="button" class="btn btn-primary" id="denver" value="Denver">Denver</button>
+                <button type="button" class="btn btn-primary" id="tpe" value="Taipei">Taipei</button>
+                <button type="button" class="btn btn-primary" id="london" value="London">London</button>
+                <button type="button" class="btn btn-primary" id="ny" value="New York">New York</button>
+                <button type="button" class="btn btn-primary" id="orlando" value="Orlando">Orlando</button>
+                <button type="button" class="btn btn-primary" id="sf" value="San Francisco">San Francisco</button>
+                <button type="button" class="btn btn-primary" id="seattle" value="Seattle">Seattle</button>
+                <button type="button" class="btn btn-primary" id="austin" value="Austin">Austin</button>
+            </div>
+            
+        </div>
+        <div class="right d-flex flex-column justify-content-around">
+            <div class="top d-flex flex-column justify-content-around">
+                <div class="today-title d-flex">
+                    <h2 class="place"></h2>
+                    <h3 class="todayDate"></h3>
+                    <img class="icon" src="" alt="">
+                </div>
+                <ul class="today-weather-detail d-flex flex-column justify-content-around">
+                    <li>Temp: <span class="temp-0"></span></li>
+                    <li>Wind: <span class="wind-0"></span></li>
+                    <li>Humidity: <span class="hum-0"></span></li>
+                    <li>UV Index: <button class="uv-0"></button></li>
+                </ul>
+            </div>
+            <div class="bottom d-flex justify-content-between align-items-center" id="week-detail">
+                <div class="each-day Monday">
+                    <h3 class="title"></h3>
+                    <!-- <img src="..." class="" alt="..."> -->
+                    <ul>
+                        <li>Temp: <span></span></li>
+                        <li>Wind: <span></span></li>
+                        <li>Humidity: <span></span></li>
+                    </ul>
+                </div>
+                <div class="each-day Tuseday">
+                    <h3 class="title"></h3>
+                    <!-- <img src="..." class="" alt="..."> -->
+                    <ul>
+                        <li>Temp: <span></span></li>
+                        <li>Wind: <span></span></li>
+                        <li>Humidity: <span></span></li>
+                    </ul>
+                </div>
+                <div class="each-day">
+                    <h3 class="title"></h3>
+                    <!-- <img src="..." class="" alt="..."> -->
+                    <ul>
+                        <li>Temp: <span></span></li>
+                        <li>Wind: <span></span></li>
+                        <li>Humidity: <span></span></li>
+                    </ul>
+                </div>
+                <div class="each-day">
+                    <h3 class="title"></h3>
+                    <!-- <img src="..." class="" alt="..."> -->
+                    <ul>
+                        <li>Temp: <span></span></li>
+                        <li>Wind: <span></span></li>
+                        <li>Humidity: <span></span></li>
+                    </ul>
+                </div>
+                <div class="each-day">
+                    <h3 class="title"></h3>
+                    <!-- <img src="..." class="" alt="..."> -->
+                    <ul>
+                        <li>Temp: <span></span></li>
+                        <li>Wind: <span></span></li>
+                        <li>Humidity: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <script src="./assets/js/index.js"></script>
+</body>
+</html>
