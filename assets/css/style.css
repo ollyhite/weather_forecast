@@ -11,7 +11,7 @@ body{
     height: 100vh;
     overflow-x: hidden;
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     background-color: var(--bgcolor);
 }
 
@@ -27,23 +27,20 @@ header{
 
 .main{
     width: 100%;
-    height: 90vh;
-    /* border: 1px solid greenyellow; */
+    height: 85%;
+    border: 1px solid greenyellow;
     padding: 0 5%;
 }
 
 .left{
     width: 20%;
+    padding-top: 30px;
     /* border: 1px solid pink; */
 }
-/* .left p{
-    width: 100%;
-    height: 100%;
-    border: 5px solid var(--lightblue);
-    background-color: var(--lightblue);
-} */
+
 .right{
     width: 70%;
+    padding-top: 30px;
     /* border: 1px solid purple; */
 }
 input{
@@ -70,6 +67,19 @@ input{
 .btn.btn-primary.submit{
     background-color: var(--lightblue);
 }
+.btn.btn-primary:hover{
+    background-color: var(--lightblue);
+}
+.btn.btn-primary:focus {
+    background-color: var(--lightblue);
+}
+
+.line{
+    width: 100%;
+    border-bottom: 4px solid var(--lightblue);
+    margin: 20px 0;
+    border-radius: 50px;
+}
 .btn-frame{
     height: 50vh;
 }
@@ -82,7 +92,7 @@ input{
 }
 .bottom{
     height: 40%;
-    /* border: 1px solid rgb(255, 166, 0); */
+    border: 1px solid rgb(255, 166, 0);
 }
 .each-day{
     width: 200px;
@@ -105,6 +115,10 @@ ul{
 .today-title{
     padding-left: 2rem;
 }
+.today-title h2,h3{
+    margin: 0;
+    margin-right: 10px;
+}
 
 .today-weather-detail{
     height: 70%;
@@ -112,5 +126,6 @@ ul{
 
 .weather-icon{
     width: 60px;
+    height: 60px;
     filter: invert(72%) sepia(85%) saturate(2161%) hue-rotate(190deg) brightness(109%) contrast(106%);
 }

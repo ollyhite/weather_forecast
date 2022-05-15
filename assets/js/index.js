@@ -40,7 +40,7 @@ function formatDecimal(num){
 
 //defination the api request
 var cityInput = document.querySelector("#city-input");
-var cityApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?';
+var cityApiUrl = 'https://api.openweathermap.org/geo/1.0/direct?';
 var lat = "";
 var lon = "";
 var dt ="dt="+todayUnix;
