@@ -4,41 +4,26 @@ var todayFomat = today.format("MM/DD/YYYY");
 var todatEl =document.querySelector(".todayDate");
 todatEl.textContent=todayFomat;
 var todayUnix=moment().unix();
-console.log(todayUnix);
-var weekArray = [];
+console.log("todayUnix",todayUnix);
+var weekArray = []; 
 var weekArrayUnit = [];
-console.log(weekArray);
-console.log(weekArrayUnit);
+// var weekArrayUnit2 = [];
 
-//make a week time unix
-for (var i=0; i<5; i++){
-    console.log(i);
-    var new_date_unix = moment().add(i, 'days').unix();
-    console.log(new_date_unix);
-    weekArrayUnit.push(new_date_unix)
-    
-    
-}
-console.log(weekArrayUnit);
-
-// for(var i=0; i<5; i++){
-//         var weekDtailEl = document.querySelector("#week-detail");
-//         var findH3=weekDtailEl.children[i].childNodes[1]
-//         console.log(findH3);
-//         var date = new Date(weekArray[i]*1000);
-//         var weeklyFormat=(date.getMonth("")+1)+"/"+(date.getDate()+1)+"/"+date.getFullYear();
-//         findH3.textContent=weeklyFormat;
-// }
 
 //show the day for weekly title
-for(var i=0; i<5; i++){
-    console.log(i);
-    var new_date = moment().add(i+1, 'days').format("MM/DD/YYYY");
-    // console.log(new_date);
+for(var i=1; i<6; i++){
+    //make a weekly time format
+    var new_date = moment().add(i, 'days').format("MM/DD/YYYY"); 
+    //make a weekly time unix
+    var new_date_unix = moment().add(i, 'days').unix();
     weekArray.push(new_date)
+    weekArrayUnit.push(new_date_unix)
 }
-// console.log(weekArray);
 
+console.log("weekArray",weekArray);
+console.log("weekArrayUnit",weekArrayUnit);
+
+//print date title
 for(var i=0; i<5; i++){
         var weekDtailEl = document.querySelector("#week-detail");
         var findH3=weekDtailEl.children[i].childNodes[1];
@@ -53,7 +38,7 @@ function formatDecimal(num){
     return newNum;  	    
 }
 
-// var cityInput =document.querySelector("#city-input");
+//defination the api request
 var cityInput = document.querySelector("#city-input");
 var cityApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?';
 var lat = "";
@@ -61,10 +46,7 @@ var lon = "";
 var dt ="dt="+todayUnix;
 var api_key="ddea37d4c9d8f3a7f69b54f8f27c48a4";
 var appid ="appid="+api_key;
-
-
-//   var new_date_unix = moment.unix(today).add(i+1, 'days');
-//         console.log(new_date_unix);
+var q = "q=Denver";
 
 function getAweekData(event){
     event.preventDefault();
@@ -72,23 +54,35 @@ function getAweekData(event){
     console.log(newArray);
 }
 
+function searchWeather(event){
+    event.preventDefault();
+    q = "q="+ cityInput.value;
+    locationApi();
+}
+
+var weatherIcons =
+    {
+    "Sunny":"./assets/icons/sunny.svg",
+    "Clear":"./assets/icons/sunny.svg",
+    "Rain":"./assets/icons/rain.svg",
+    "Clouds":"./assets/icons/cloudy.svg",
+    "Snow":"./assets/icons/snow.svg"
+}
+
+//load data when in page
+locationApi();
 
 //need to get lat,lon value first
 function locationApi(event){
-    event.preventDefault();
-    var q = "q=";
-    console.log(event.target.value);
-    if(event.target.value===search){
-        q = "q="+ cityInput.value;
-    }else{
+    //if have btn click to find val
+    if(event){
         q = "q="+ event.target.value;
     }
-    // console.log(q);
 
     fetch(cityApiUrl+q+'&'+appid,{
-        method: 'GET', //GET is the default.
-        credentials: 'same-origin', // include, *same-origin, omit
-        redirect: 'follow', // manual, *follow, error
+        method: 'GET', 
+        credentials: 'same-origin', 
+        redirect: 'follow',
     })
     .then(function (response) {
         if(response.status === 200){
@@ -106,51 +100,68 @@ function locationApi(event){
         lon = formatDecimal(data[0].lon);
         newLat = "lat="+lat;
         newLon = "lon="+lon;
-        // console.log(data[0].lat);
-        // console.log(data[0].lon);
-        // console.log(lat);
-        // console.log(lon);
-        // console.log(newLat);
-        // console.log(newLon);
         getWeatherApi(newLat,newLon)
         });
 }
 
 //get weather data again
-var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall/timemachine?';
+var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?';
 
 function getWeatherApi(lat,lon){
     console.log(requestUrl+lat+'&'+lon+'&'+dt+'&'+appid);
     
     fetch(requestUrl+lat+'&'+lon+'&'+dt+'&'+appid,{
-        method: 'GET', //GET is the default.
-        credentials: 'same-origin', // include, *same-origin, omit
-        redirect: 'follow', // manual, *follow, error
+        method: 'GET', 
+        credentials: 'same-origin', 
+        redirect: 'follow', 
     })
     .then(function (response) {
-    if(response.status === 200){
-            console.log(response.clone().json());
-            return response.clone().json();
-        }else{
-            alert("Get Data failed, Please inset another value!")
-        }
-    })
+        if(response.status === 200){
+                console.log(response.clone().json());
+                return response.clone().json();
+            }
+        })
     .then(function (data) {
-    console.log(data);
-    var todayTemp=document.querySelector(".temp-0");
-    todayTemp.textContent=data.current.temp;
-    var todayWind=document.querySelector(".wind-0");
-    todayWind.textContent=data.current.wind_deg;
-    var todayHum=document.querySelector(".hum-0");
-    todayHum.textContent=data.current.humidity;
-    var todayUV=document.querySelector(".uv-0");
-    todayUV.textContent=data.current.uvi;
+        console.log(data);
+        //today data
+        var todayTemp=document.querySelector(".temp-0");
+        todayTemp.textContent=data.current.temp;
+        var todayWind=document.querySelector(".wind-0");
+        todayWind.textContent=data.current.wind_deg;
+        var todayHum=document.querySelector(".hum-0");
+        todayHum.textContent=data.current.humidity;
+        var todayUV=document.querySelector(".uv-0");
+        todayUV.textContent=data.current.uvi;
+        //show today weather icons
+        var todayWeatherIconEl = document.querySelector("#today-weather-icon");
+        // console.log(data.current.weather[0].main);
+        var weatherIconMatch =Object.keys(weatherIcons).filter((key) => key.includes(data.current.weather[0].main))
+        // console.log(weatherIcons[weatherIconMatch]);
+        todayWeatherIconEl.src=weatherIcons[weatherIconMatch]
+        //got five days data and print it
+        for(var i=1;i<6;i++){
+            console.log(data.daily[i]);
+            var weekDateEl = document.querySelector("#week-detail").children[i-1];
+            var weekTemp=weekDateEl.querySelector(".temp");
+            weekTemp.textContent=data.daily[i].temp.day;
+            var weekWind=weekDateEl.querySelector(".wind");
+            weekWind.textContent=data.daily[i].wind_deg;
+            var weekHum=weekDateEl.querySelector(".hum");
+            weekHum.textContent=data.daily[i].humidity;
+            //show the weekly weather icons
+            weeklyWeatherIconEl = weekDateEl.querySelector(".weather-icon");
+            console.log(weeklyWeatherIconEl);
+            // console.log(data.daily[i].weather[0].main);
+            weatherIconMatch =Object.keys(weatherIcons).filter((key) => key.includes(data.daily[i].weather[0].main))
+            // console.log(weatherIcons[weatherIconMatch]);
+            weeklyWeatherIconEl.src = weatherIcons[weatherIconMatch];
+            
+        }
     });
 }
 
 //search btn
 var searchBtn = document.querySelector("#search")
-// searchBtn.addEventListener("click", getAweekData)
 searchBtn.addEventListener("click", locationApi)
 
 var denverBtn = document.querySelector("#denver")

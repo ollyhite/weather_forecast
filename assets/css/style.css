@@ -109,3 +109,8 @@ ul{
 .today-weather-detail{
     height: 70%;
 }
+
+.weather-icon{
+    width: 60px;
+    filter: invert(72%) sepia(85%) saturate(2161%) hue-rotate(190deg) brightness(109%) contrast(106%);
+}
