@@ -86,14 +86,14 @@ function locationApi(event){
     })
     .then(function (response) {
         if(response.status === 200){
-            console.log(response.clone().json());
+            console.log(response);
             return response.clone().json();
         }else{
             alert("Get Data failed, Please inset another value!")
         }
     })
     .then(function (data) {
-        console.log(data[0]);
+        console.log(data);
         var cityName=document.querySelector(".place");
         cityName.textContent=data[0].name;
         lat = formatDecimal(data[0].lat);
@@ -125,11 +125,11 @@ function getWeatherApi(lat,lon){
         console.log(data);
         //today data
         var todayTemp=document.querySelector(".temp-0");
-        todayTemp.textContent=data.current.temp;
+        todayTemp.textContent=data.current.temp +" °F";
         var todayWind=document.querySelector(".wind-0");
-        todayWind.textContent=data.current.wind_deg;
+        todayWind.textContent=data.current.wind_deg+" MPH";
         var todayHum=document.querySelector(".hum-0");
-        todayHum.textContent=data.current.humidity;
+        todayHum.textContent=data.current.humidity +" %";
         var todayUV=document.querySelector(".uv-0");
         todayUV.textContent=data.current.uvi;
         //show today weather icons
@@ -143,11 +143,11 @@ function getWeatherApi(lat,lon){
             console.log(data.daily[i]);
             var weekDateEl = document.querySelector("#week-detail").children[i-1];
             var weekTemp=weekDateEl.querySelector(".temp");
-            weekTemp.textContent=data.daily[i].temp.day;
+            weekTemp.textContent=data.daily[i].temp.day +" °F";
             var weekWind=weekDateEl.querySelector(".wind");
-            weekWind.textContent=data.daily[i].wind_deg;
+            weekWind.textContent=data.daily[i].wind_deg+" MPH";
             var weekHum=weekDateEl.querySelector(".hum");
-            weekHum.textContent=data.daily[i].humidity;
+            weekHum.textContent=data.daily[i].humidity+" %";
             //show the weekly weather icons
             weeklyWeatherIconEl = weekDateEl.querySelector(".weather-icon");
             console.log(weeklyWeatherIconEl);
@@ -189,3 +189,19 @@ var austinBtn = document.querySelector("#austin")
 austinBtn.addEventListener("click", locationApi)
 
 
+//carousel
+let items = document.querySelectorAll('.carousel .carousel-item')
+
+items.forEach((el) => {
+    const minPerSlide = 4
+    let next = el.nextElementSibling
+    for (var i = 1; i < minPerSlide; i++) {
+        if (!next) {
+            // wrap carousel by using first child
+            next = items[0]
+        }
+        let cloneChild = next.cloneNode(true)
+        el.appendChild(cloneChild.children[0])
+        next = next.nextElementSibling
+        }
+    });

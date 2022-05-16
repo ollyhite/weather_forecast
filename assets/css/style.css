@@ -28,7 +28,7 @@ header{
 .main{
     width: 100%;
     height: 85%;
-    border: 1px solid greenyellow;
+    /* border: 1px solid greenyellow; */
     padding: 0 5%;
 }
 
@@ -63,6 +63,7 @@ input{
     width: 100%;
     background-color: transparent;
     border-color: var(--lightblue);
+    --bs-btn-focus-box-shadow:none;
 }
 .btn.btn-primary.submit{
     background-color: var(--lightblue);
@@ -77,7 +78,7 @@ input{
 .line{
     width: 100%;
     border-bottom: 4px solid var(--lightblue);
-    margin: 20px 0;
+    margin: 20px 0 5px 0;
     border-radius: 50px;
 }
 .btn-frame{
@@ -90,12 +91,24 @@ input{
     border-radius: var(--borderR);
     color: var(--lightblue);
 }
+
+.uv-0{
+    padding: 5px 20px;
+    outline: 0;
+    border: none;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
 .bottom{
     height: 40%;
-    border: 1px solid rgb(255, 166, 0);
+    /* border: 1px solid rgb(255, 166, 0); */
+}
+.carousel-inner{
+    height: 100%;
 }
 .each-day{
-    width: 200px;
+    width: 18%;
     height: 100%;
     background-color: transparent;
     border: 1px solid var(--lightblue);
@@ -103,13 +116,14 @@ input{
     color: var(--lightblue);
     
 }
-/* .each-day .title{
-    padding-left: 2rem;
-} */
+
 
 ul{
     width: 100%;
     list-style: none;
+}
+li span{
+    margin-left: 10px;
 }
 
 .today-title{
@@ -126,6 +140,68 @@ ul{
 
 .weather-icon{
     width: 60px;
-    height: 60px;
+    /* height: 60px; */
     filter: invert(72%) sepia(85%) saturate(2161%) hue-rotate(190deg) brightness(109%) contrast(106%);
+}
+
+/* carousel */
+@media (max-width: 767px) {
+    .carousel-inner .carousel-item>div {
+        display: none;
+    }
+
+    .carousel-inner .carousel-item>div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+ /* medium and up screens */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-end.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(25%);
+    }
+
+    .carousel-inner .carousel-item-start.active,
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(-25%);
+    }
+}
+
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start {
+    transform: translateX(0);
+}
+
+.carousel{
+    width: 100%;
+    /* border: 1px solid pink; */
+}
+.carousel-item{
+    /* width: 500px; */
+}
+.carousel-item .each-day{
+    width: 100%;
+    /* width: 200px; */
+    /* border: none; */
+    /* margin-right: 20px; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+.inside-frame{
+    width: 60%;
+    border: 1px solid var(--lightblue);
+}
+.carousel-inner{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid yellow; */
 }
