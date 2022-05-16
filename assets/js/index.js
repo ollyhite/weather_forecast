@@ -38,6 +38,13 @@ function formatDecimal(num){
     return newNum;  	    
 }
 
+// K to F
+var temKtoF;
+function temperatureConverter(valNum) {
+valNum = parseFloat(valNum);
+temKtoF=(((valNum-273.15)*1.8)+32).toFixed(2);
+}
+
 //defination the api request
 var cityInput = document.querySelector("#city-input");
 var cityApiUrl = 'https://api.openweathermap.org/geo/1.0/direct?';
@@ -125,7 +132,8 @@ function getWeatherApi(lat,lon){
         console.log(data);
         //today data
         var todayTemp=document.querySelector(".temp-0");
-        todayTemp.textContent=data.current.temp +" °F";
+        temperatureConverter(data.current.temp)//k to f func
+        todayTemp.textContent=temKtoF +" °F";
         var todayWind=document.querySelector(".wind-0");
         todayWind.textContent=data.current.wind_deg+" MPH";
         var todayHum=document.querySelector(".hum-0");
@@ -143,7 +151,8 @@ function getWeatherApi(lat,lon){
             console.log(data.daily[i]);
             var weekDateEl = document.querySelector("#week-detail").children[i-1];
             var weekTemp=weekDateEl.querySelector(".temp");
-            weekTemp.textContent=data.daily[i].temp.day +" °F";
+            temperatureConverter(data.daily[i].temp.day);//k to f func
+            weekTemp.textContent= temKtoF+" °F";
             var weekWind=weekDateEl.querySelector(".wind");
             weekWind.textContent=data.daily[i].wind_deg+" MPH";
             var weekHum=weekDateEl.querySelector(".hum");
@@ -159,6 +168,8 @@ function getWeatherApi(lat,lon){
         }
     });
 }
+
+
 
 //search btn
 var searchBtn = document.querySelector("#search")
