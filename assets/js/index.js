@@ -140,6 +140,16 @@ function getWeatherApi(lat,lon){
         todayHum.textContent=data.current.humidity +" %";
         var todayUV=document.querySelector(".uv-0");
         todayUV.textContent=data.current.uvi;
+        var uvIndex=data.current.uvi;
+        if(uvIndex<2){
+            todayUV.style.background="green";
+        }else if(uvIndex>2 && uvIndex<6){
+            todayUV.style.background="yellow";
+        }else if(uvIndex >6 && uvIndex<8){
+            todayUV.style.background="orange";
+        }else{
+            todayUV.style.background="red";
+        }
         //show today weather icons
         var todayWeatherIconEl = document.querySelector("#today-weather-icon");
         // console.log(data.current.weather[0].main);
