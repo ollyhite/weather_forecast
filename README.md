@@ -2,7 +2,7 @@
 
 ## Live Link
 
-http://127.0.0.1:5500/weather_forecast/index.html
+https://ollyhite.github.io/weather_forecast/
 
 ## Installation
 
