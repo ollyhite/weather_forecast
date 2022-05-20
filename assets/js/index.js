@@ -34,7 +34,7 @@ for(var i=0; i<5; i++){
 //makk num left 2 and not change value
 function formatDecimal(num){
     var newNum = num.toFixed(3).slice(0, -1); 
-    console.log(newNum);
+    // console.log(newNum);
     return newNum;  	    
 }
 
@@ -65,15 +65,10 @@ var availableTags=[];
 function searchWeather(event){
     event.preventDefault();
     q = "q="+ cityInput.value;
-    // console.log("qqqq",q);
-    
     availableTags = JSON.parse(localStorage.getItem("cityArray"))||[];
-    // console.log(availableTags.(""));
-    console.log(typeof availableTags);
-    // console.log(typeof availableTags.split(''));
-
+    // console.log(typeof availableTags);
     availableTags.push(cityInput.value);
-    console.log(availableTags);
+    // console.log(availableTags);
     localStorage.setItem("cityArray", JSON.stringify(availableTags));
     locationApi();
 }
@@ -126,8 +121,7 @@ function locationApi(event){
 var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?';
 
 function getWeatherApi(lat,lon){
-    console.log(requestUrl+lat+'&'+lon+'&'+dt+'&'+appid);
-    
+    // console.log(requestUrl+lat+'&'+lon+'&'+dt+'&'+appid);
     fetch(requestUrl+lat+'&'+lon+'&'+dt+'&'+appid,{
         method: 'GET', 
         credentials: 'same-origin', 
@@ -135,7 +129,7 @@ function getWeatherApi(lat,lon){
     })
     .then(function (response) {
         if(response.status === 200){
-                console.log(response.clone().json());
+                // console.log(response.clone().json());
                 return response.clone().json();
             }
         })
@@ -169,7 +163,7 @@ function getWeatherApi(lat,lon){
         todayWeatherIconEl.src=weatherIcons[weatherIconMatch]
         //got five days data and print it
         for(var i=1;i<6;i++){
-            console.log(data.daily[i]);
+            // console.log(data.daily[i]);
             var weekDateEl = document.querySelector("#week-detail").children[i-1];
             var weekTemp=weekDateEl.querySelector(".temp");
             temperatureConverter(data.daily[i].temp.day);//k to f func
@@ -180,7 +174,6 @@ function getWeatherApi(lat,lon){
             weekHum.textContent=data.daily[i].humidity+" %";
             //show the weekly weather icons
             weeklyWeatherIconEl = weekDateEl.querySelector(".weather-icon");
-            console.log(weeklyWeatherIconEl);
             // console.log(data.daily[i].weather[0].main);
             weatherIconMatch =Object.keys(weatherIcons).filter((key) => key.includes(data.daily[i].weather[0].main))
             // console.log(weatherIcons[weatherIconMatch]);
