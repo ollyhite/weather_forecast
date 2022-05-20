@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Forecast</title>
 </head>
@@ -14,8 +15,9 @@
     </header>
     <section class="main d-flex justify-content-between">
         <div class="left">
-            <form>
+            <form autocomplete="off">
                 <div class="mb-3">
+                    <label for="tags"></label>
                     <input type="text" class="form-control" id="city-input"
                     placeholder="Enter City Name">
                 </div>
@@ -162,6 +164,8 @@
             </div> -->
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
     <script src="./assets/js/index.js"></script>

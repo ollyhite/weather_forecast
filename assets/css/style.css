@@ -209,3 +209,11 @@ li span{
     justify-content: space-between;
     /* border: 1px solid yellow; */
 }
+.ui-menu.ui-widget{
+    width: 100px;
+    background-color: #141F3D;
+    color: var(--lightblue);
+    border-color: var(--lightblue);
+    border-radius: 0 0 10px 10px;
+
+}

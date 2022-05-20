@@ -60,10 +60,21 @@ function getAweekData(event){
     const newArray = [todayUnix].concat(weekArrayUnit)
     console.log(newArray);
 }
+var availableTags=[];
 
 function searchWeather(event){
     event.preventDefault();
     q = "q="+ cityInput.value;
+    // console.log("qqqq",q);
+    
+    availableTags = JSON.parse(localStorage.getItem("cityArray"))||[];
+    // console.log(availableTags.(""));
+    console.log(typeof availableTags);
+    // console.log(typeof availableTags.split(''));
+
+    availableTags.push(cityInput.value);
+    console.log(availableTags);
+    localStorage.setItem("cityArray", JSON.stringify(availableTags));
     locationApi();
 }
 
@@ -75,14 +86,14 @@ var weatherIcons =
     "Clouds":"./assets/icons/cloudy.svg",
     "Snow":"./assets/icons/snow.svg"
 }
-
 //load data when in page
 locationApi();
-
 //need to get lat,lon value first
 function locationApi(event){
     //if have btn click to find val
+
     if(event){
+        event.preventDefault();
         q = "q="+ event.target.value;
     }
 
@@ -181,9 +192,9 @@ function getWeatherApi(lat,lon){
 
 
 
-//search btn
+//search btns
 var searchBtn = document.querySelector("#search")
-searchBtn.addEventListener("click", locationApi)
+searchBtn.addEventListener("click", searchWeather)
 
 var denverBtn = document.querySelector("#denver")
 denverBtn.addEventListener("click", locationApi)
@@ -226,3 +237,15 @@ items.forEach((el) => {
         next = next.nextElementSibling
         }
     });
+
+
+
+setCityTags();
+//autocomplete function
+function setCityTags() {
+    availableTags = JSON.parse(localStorage.getItem("cityArray"));
+    console.log(availableTags);
+    $("#city-input").autocomplete({
+    source: availableTags
+    });
+} ;
